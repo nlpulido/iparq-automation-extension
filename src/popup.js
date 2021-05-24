@@ -14,9 +14,7 @@ window.onload = (function() {
     });
 
     document.getElementById('validateBtn').addEventListener('click', () => {
-      // edit the status
-      changeStatusMessage("SENDING MESSAGE...");
-
+      
       // Communicate with background file by sending a message
       chrome.runtime.sendMessage(
         {
