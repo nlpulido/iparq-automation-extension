@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iPARQ Permit Validator</title>
+    <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="inner">
+      <h1>iPARQ Permit Validator</h1>
+      <div>
+        <h2>Status: </h2>
+        <p id="status">READY</p>
+      </div>
+      <select name="permit-term" id="permit-term" class="permit-term-dropdown">
+        <option value="Spring & Summer">Spring & Summer</option>
+        <option value="Fall">Fall</option>
+        <option value="Affiliate Spring & Summer">Affiliate Spring & Summer</option>
+        <option value="Affiliate Fall">Affiliate Fall</option>
+      </select>
+      <button class="validate-button" id="validateBtn">Validate Permits</button>
+      <a href="https://docs.google.com/spreadsheets/d/1WOto59_8sdDg1_4Zd52UAteDmusdW1F5WdtBbGhpouk/" target="_blank" rel="noopener noreferrer"><h2>Edit Google Sheet</h2></a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
