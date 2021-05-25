@@ -11,33 +11,23 @@
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
 
-// Log `title` of current active web page
-const pageTitle = document.head.getElementsByTagName('title')[0].innerHTML;
-console.log(
-  `Page title is: '${pageTitle}' - evaluated by Chrome extension's 'contentScript.js' file`
-);
+const header = document.createElement("h1");
+header.innerHTML = "iPARQ Permit Validator"
 
-// Communicate with background file by sending a message
-chrome.runtime.sendMessage(
-  {
-    type: 'GREETINGS',
-    payload: {
-      message: 'Hello, my name is Con. I am from ContentScript.',
-    },
-  },
-  response => {
-    console.log(response.message);
-  }
-);
+// Wait for the DOM to completely load.
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.getElementsByTagName("body");
+  body[0].prepend(header);
 
-// Listen for message
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.type === 'COUNT') {
-    console.log(`Current count is ${request.payload.count}`);
-  }
+  // Listen for request
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type == "getText") {
+      // Append to the contents of the body.
+      document.body.innerHTML = '<h1 id="installed" >Successfully Installed!</h1>' + document.body.innerHTML;
+      // console.log("content script received message")
+      sendResponse({response: "Hello from content script!"});
+    }
 
-  // Send an empty response
-  // See https://github.com/mozilla/webextension-polyfill/issues/130#issuecomment-531531890
-  sendResponse({});
-  return true;
+    return true;
+  });
 });
