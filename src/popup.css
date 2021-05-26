@@ -18,13 +18,22 @@ body {
     height: 300px;
 }
 
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
 .inner {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    height: 100vh;
+    height: 90%;
+    width: 90%;
 }
 
 .inner button {

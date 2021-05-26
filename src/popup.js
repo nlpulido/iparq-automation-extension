@@ -15,9 +15,6 @@ window.onload = (function() {
         {
           type: "START",
           message: "Hello from the popup!",
-        },
-        (response) => {
-          console.log(response.message);
         }
       );
       
