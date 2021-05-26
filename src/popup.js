@@ -17,9 +17,6 @@ window.onload = (function() {
       // handle our validation state
       handleValidation();
 
-      // log statement
-      console.log(`Validation state: ${validationEnabled}`);
-
       // send a message to the background
       // chrome.runtime.sendMessage(
       //   {

@@ -21,7 +21,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://admin.thepermitstore.com/home"
+        "https://admin.thepermitstore.com/*"
       ],
       "run_at": "document_idle",
       "js": [
