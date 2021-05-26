@@ -23,21 +23,15 @@ function prependText(text) {
 
 }
 
-// Wait for the DOM to completely load.
-document.addEventListener("DOMContentLoaded", () => {
-
-  // Listen for the message to start the script
-  
-
-//   prependText("iPARQ PERMIT VALIDATOR WOOHOO");
-
-  // Listen for request
-  // chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  //   if (request.type == "getText") {
-  //     // Append to the contents of the body.
-  //     document.body.innerHTML = '<h1 id="installed" >Successfully Installed!</h1>' + document.body.innerHTML;
-  //     // console.log("content script received message")
-  //     sendResponse({response: "Hello from content script!"});
-  //   }
-
-});
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (request.type == "start") {
+      console.log("Starting validator...");
+      prependText("START!!");
+    } else if (request.type == "interrupt") {
+      console.log("Interrupting validator...");
+      prependText("CANCEL!!");
+    }
+  }
+);
+// prependText("iPARQ PERMIT VALIDATOR HELLO");

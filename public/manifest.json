@@ -14,14 +14,16 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "tabs",
+    "https://admin.thepermitstore.com/*"
   ],
   "content_scripts": [
     {
       "matches": [
         "https://admin.thepermitstore.com/home"
       ],
-      "run_at": "document_start",
+      "run_at": "document_idle",
       "js": [
         "contentScript.js"
       ]
