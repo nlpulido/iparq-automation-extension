@@ -43,7 +43,7 @@ body {
     padding: 5px;
 }
 
-.inner button:hover {
+.inner button:hover:enabled {
     cursor: pointer;
     background-color: black;
     color: white;

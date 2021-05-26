@@ -8,18 +8,10 @@
 chrome.runtime.onMessage.addListener((request) => {
     switch(request.type) {
         case "START":
-            sendResponse(
-                {
-                    message: "START REQUESTED (from background.js)"
-                }
-            );
+            console.log("START REQUESTED (from background.js)");
             break;
         case "INTERRUPT":
-            sendResponse(
-                {
-                    message: "INTERRUPTION REQUESTED (from background.js)"
-                }
-            );
+            console.log("INTERRUPTION REQUESTED (from background.js)");
             break;
         default:
             break;
