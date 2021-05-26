@@ -5,3 +5,4 @@ Currently, this project serves to validate permit PSID's, prices, & names are co
 - https://developer.chrome.com/docs/extensions/mv3/messaging/
 - https://intoli.com/blog/chrome-extensions-with-selenium/
 - https://react.christmas/2020/12
+- https://stackoverflow.com/questions/41889189/what-exactly-are-content-script-and-background-script-in-the-chrome-extension
