@@ -10,6 +10,7 @@
 
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
+chrome.scripting.executeScript(null, { file: "jquery.js" });
 
 function prependText(text) {
 
@@ -18,10 +19,14 @@ function prependText(text) {
   header.innerHTML = text;
   
   // prepend it to the body
-  const body = document.getElementsByTagName("body");
-  body[0].prepend(header);
+  // const body = document.getElementsByTagName("body");
+  // body[0].prepend(header);
 
-}
+  // Use jquery to overwrite the elements
+  // $("body").prepend(header);
+
+  console.log("something should've happened");
+};
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
@@ -34,4 +39,3 @@ chrome.runtime.onMessage.addListener(
     }
   }
 );
-// prependText("iPARQ PERMIT VALIDATOR HELLO");
