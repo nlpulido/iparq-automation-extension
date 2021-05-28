@@ -3,8 +3,15 @@
 window.onload = (function() {
 
   let validationEnabled = false;
+  let portal = "main"; // defaults to main portal
+
   function handleValidation() {
     validationEnabled = !validationEnabled;
+  }
+
+  function handleDropdown() {
+    var choice = document.getElementById("permit-portal").value;
+    portal = choice;
   }
 
   function setUpExtension() {
@@ -19,19 +26,15 @@ window.onload = (function() {
 
     });
 
+    // handle menu changes
+    var menu = document.getElementById('permit-portal');
+    menu.onchange = handleDropdown;
+
     // add a listener for when the user clicks start
     document.getElementById('validateBtn').addEventListener('click', () => {
       
       // handle our validation state
       handleValidation();
-
-      // send a message to the background
-      // chrome.runtime.sendMessage(
-      //   {
-      //     type: "START",
-      //     message: "Hello from the popup!",
-      //   }
-      // );
 
       // disable our validateBtn & enabled our cancelBtn
       document.getElementById('validateBtn').disabled = true;
@@ -39,7 +42,7 @@ window.onload = (function() {
 
       // send a message to the content script
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {type: "start"});
+        chrome.tabs.sendMessage(tabs[0].id, {type: portal});
       });
 
     });
@@ -49,14 +52,6 @@ window.onload = (function() {
       
       // handle our validation state
       handleValidation();
-
-      // send a message to the background
-      // chrome.runtime.sendMessage(
-      //   {
-      //     type: "INTERRUPT",
-      //     message: "Hello from the popup!",
-      //   }
-      // );
 
       // disable our validateBtn & enabled our cancelBtn
       document.getElementById('validateBtn').disabled = false;

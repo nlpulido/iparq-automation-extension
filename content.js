@@ -21,14 +21,28 @@ function prependText(text) {
   
 };
 
+function validateMainPortal() {
+  console.log("Starting validator for MAIN...");
+
+  // redirect to the permit types page
+  window.location.replace("https://admin.thepermitstore.com/setup/permittypes.php");
+
+  // find the permit table
+  let permit_table = document.getElementById('st_setuppermittypes');
+
+  
+}
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if (request.type == "start") {
-      console.log("Starting validator...");
-      prependText("START!!");
+    if (request.type == "main") {
+      validateMainPortal();
+    } else if (request.type == "affiliate") {
+      console.log("Starting validator for AFFILIATE...");
     } else if (request.type == "interrupt") {
       console.log("Interrupting validator...");
-      prependText("CANCEL!!");
+    } else {
+      console.log(`Got an unknown type: ${request.type}`)
     }
   }
 );
