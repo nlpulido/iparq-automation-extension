@@ -27,10 +27,14 @@ function validateMainPortal() {
   // redirect to the permit types page
   window.location.replace("https://admin.thepermitstore.com/setup/permittypes.php");
 
-  // find the permit table
-  let permit_table = document.getElementById('st_setuppermittypes');
+  window.location.onchange(() => {
+    // find the permit table
+    let permit_table = document.getElementById('st_setuppermittypes');
 
-  
+    let permit_elements = permit_table.getElementsByTagName('tr');
+
+    console.log(permit_elements)
+  })
 }
 
 chrome.runtime.onMessage.addListener(
