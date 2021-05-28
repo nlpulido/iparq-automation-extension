@@ -1,5 +1,3 @@
-'use strict';
-
 // Content script file will run in the context of web page.
 // With content script you can manipulate the web pages using
 // Document Object Model (DOM).
@@ -10,9 +8,6 @@
 
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
-chrome.scripting.executeScript(null, { file: "jquery.js" }, function (results) {
-  console.log(results);
-});
 
 function prependText(text) {
 
@@ -21,13 +16,9 @@ function prependText(text) {
   header.innerHTML = text;
   
   // prepend it to the body
-  // const body = document.getElementsByTagName("body");
-  // body[0].prepend(header);
-
-  // Use jquery to overwrite the elements
-  // $("body").prepend(header);
-
-  console.log("something should've happened");
+  const body = document.getElementsByTagName("body");
+  body[0].prepend(header);
+  
 };
 
 chrome.runtime.onMessage.addListener(

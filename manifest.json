@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "iPARQ Automation Extension",
+    "version": "0.1.0",
+    "description": "Chrome extension to validate iPARQ Permits",
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_title": "iPARQ Automation Extension",
+      "default_popup": "popup.html"
+    },
+    "permissions": [
+      "storage",
+      "tabs",
+      "scripting"
+    ],
+    "host_permissions": [
+      "https://admin.thepermitstore.com/*"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "https://admin.thepermitstore.com/*"
+        ],
+        "run_at": "document_end",
+        "js": [
+          "jquery-3.6.0.min.js",
+          "content.js"
+        ]
+      }
+    ],
+    "content_security_policy": {
+      "worker-src": "https://ajax.googleapis.com",
+      "object-src": "https://ajax.googleapis.com"
+    }
+}

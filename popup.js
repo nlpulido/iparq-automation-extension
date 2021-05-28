@@ -1,7 +1,5 @@
 'use strict';
 
-import './popup.css';
-
 window.onload = (function() {
 
   let validationEnabled = false;
