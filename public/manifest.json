@@ -12,7 +12,8 @@
   },
   "permissions": [
     "storage",
-    "tabs"
+    "tabs",
+    "scripting"
   ],
   "host_permissions": [
     "https://admin.thepermitstore.com/*"

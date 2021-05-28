@@ -10,7 +10,9 @@
 
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
-chrome.scripting.executeScript(null, { file: "jquery.js" });
+chrome.scripting.executeScript(null, { file: "jquery.js" }, function (results) {
+  console.log(results);
+});
 
 function prependText(text) {
 
