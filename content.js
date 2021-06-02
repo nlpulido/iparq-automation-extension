@@ -9,6 +9,38 @@
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
 
+// Promise to switch to the main portal
+function switchToMainPortal() {
+  return new Promise((resolve) => {
+    console.log("Switching to main portal");
+    // Navigate to the main portal
+    window.location.href = "https://admin.thepermitstore.com/setup/switch_client.php?table=switch&edit=83";
+    resolve();
+  });
+}
+
+// Promise to switch to the affiliate portal
+function switchToAffiliatePortal() {
+  return new Promise((resolve) => {
+    console.log("Switching to affiliate portal");
+    // Navigate to the main portal
+    window.location.href = "https://admin.thepermitstore.com/setup/switch_client.php?table=switch&edit=155";
+    resolve();
+  });
+}
+
+// promise to navigate to the permit types
+function navigatePermitTypes() {
+  return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Switching to navigating to permit types");
+        // Navigate to the permit types page
+        // window.location.href = "https://admin.thepermitstore.com/setup/permittypes.php";
+        resolve();
+      }, 2000);
+  })
+}
+
 function prependText(text) {
 
   // define our header
@@ -21,28 +53,27 @@ function prependText(text) {
   
 };
 
-function validateMainPortal() {
-  console.log("Starting validator for MAIN...");
+// function validateMainPortal() {
+//   console.log("Starting validator for MAIN...");
 
-  // redirect to the permit types page
-  window.location.replace("https://admin.thepermitstore.com/setup/permittypes.php");
+//   switchToMainPortal().then(navigatePermitTypes);
 
-  window.location.onchange(() => {
-    // find the permit table
-    let permit_table = document.getElementById('st_setuppermittypes');
+// //   window.location.onchange(() => {
+// //     // find the permit table
+// //     let permit_table = document.getElementById('st_setuppermittypes');
 
-    let permit_elements = permit_table.getElementsByTagName('tr');
+// //     let permit_elements = permit_table.getElementsByTagName('tr');
 
-    console.log(permit_elements)
-  })
-}
+// //     console.log(permit_elements)
+// //   })
+// }
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.type == "main") {
-      validateMainPortal();
+      switchToMainPortal();
     } else if (request.type == "affiliate") {
-      console.log("Starting validator for AFFILIATE...");
+      switchToAffiliatePortal();
     } else if (request.type == "interrupt") {
       console.log("Interrupting validator...");
     } else {

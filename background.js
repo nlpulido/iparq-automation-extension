@@ -5,6 +5,21 @@
 // For more information on background script,
 // See https://developer.chrome.com/extensions/background_pages
 
+function validateMainPortal() {
+    console.log("Starting validator for MAIN...");
+  
+    switchToMainPortal().then(navigatePermitTypes);
+  
+  //   window.location.onchange(() => {
+  //     // find the permit table
+  //     let permit_table = document.getElementById('st_setuppermittypes');
+  
+  //     let permit_elements = permit_table.getElementsByTagName('tr');
+  
+  //     console.log(permit_elements)
+  //   })
+  }
+
 chrome.runtime.onMessage.addListener((request) => {
     switch(request.type) {
         case "START":
