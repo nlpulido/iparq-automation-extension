@@ -52,6 +52,12 @@ window.onload = (function() {
     }
   };
 
+  function toggleButtons() {
+    // disable our validateBtn & enabled our cancelBtn
+    document.getElementById('validateBtn').disabled = !document.getElementById('validateBtn').disabled;
+    document.getElementById('cancelBtn').disabled = !document.getElementById('cancelBtn').disabled;
+  }
+
   function setUpExtension() {
 
     /* make sure we're on the iPARQ admin site */
@@ -63,29 +69,29 @@ window.onload = (function() {
     // add a listener for when the user clicks start
     document.getElementById('validateBtn').addEventListener('click', () => {
       
-      // handle our validation state
+      // handle our validation state & toggle buttons
       handleValidation();
+      toggleButtons();
 
-      // disable our validateBtn & enabled our cancelBtn
-      document.getElementById('validateBtn').disabled = true;
-      document.getElementById('cancelBtn').disabled = false;
+      // send a message to the content script
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {type: "start"});
+      });
 
     });
 
     // add a listener for when the user clicks cancel
     document.getElementById('cancelBtn').addEventListener('click', () => {
       
-      // handle our validation state
+      // handle our validation state & toggle buttons
       handleValidation();
-
-      // disable our validateBtn & enabled our cancelBtn
-      document.getElementById('validateBtn').disabled = false;
-      document.getElementById('cancelBtn').disabled = true;
+      toggleButtons();
 
       // send a message to the content script
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {type: "interrupt"});
       });
+
     });
   
   }

@@ -32,17 +32,16 @@ function switchToAffiliatePortal() {
 // promise to navigate to the permit types
 function navigatePermitTypes() {
   return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log("Switching to navigating to permit types");
-        // Navigate to the permit types page
-        // window.location.href = "https://admin.thepermitstore.com/setup/permittypes.php";
-        resolve();
-      }, 2000);
+      console.log("Switching to navigating to permit types");
+
+      // Navigate to the permit types page
+      window.location.href = "https://admin.thepermitstore.com/setup/permittypes.php";
+
+      resolve();
   })
 }
 
 function prependText(text) {
-
   // define our header
   const header = document.createElement("h1")
   header.innerHTML = text;
@@ -51,22 +50,13 @@ function prependText(text) {
   const body = document.getElementsByTagName("body");
   body[0].prepend(header);
   
+  console.log(`Prepending: ${text}`);
 };
 
-// function validateMainPortal() {
-//   console.log("Starting validator for MAIN...");
-
-//   switchToMainPortal().then(navigatePermitTypes);
-
-// //   window.location.onchange(() => {
-// //     // find the permit table
-// //     let permit_table = document.getElementById('st_setuppermittypes');
-
-// //     let permit_elements = permit_table.getElementsByTagName('tr');
-
-// //     console.log(permit_elements)
-// //   })
-// }
+function startValidator() {
+  console.log("Starting validator...");
+  navigatePermitTypes();
+}
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
@@ -76,6 +66,8 @@ chrome.runtime.onMessage.addListener(
       switchToAffiliatePortal();
     } else if (request.type == "interrupt") {
       console.log("Interrupting validator...");
+    } else if (request.type == "start") {
+      startValidator();
     } else {
       console.log(`Got an unknown type: ${request.type}`)
     }
